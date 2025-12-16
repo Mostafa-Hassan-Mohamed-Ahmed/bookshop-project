@@ -95,3 +95,4 @@ app.post('/delete/:id', async (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`🚀 Site running on port ${PORT}`));
+module.exports = app;
