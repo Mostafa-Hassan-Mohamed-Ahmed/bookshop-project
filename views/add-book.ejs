@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Book</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f7f6; display: flex; justify-content: center; padding: 50px; }
+        .form-box { background: white; padding: 30px; border-radius: 10px; width: 400px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>Add a New Book</h2>
+        <form action="/add" method="POST">
+            <input type="text" name="title" placeholder="Book Title" required>
+            <textarea name="description" placeholder="Description" rows="3"></textarea>
+            <input type="number" name="price" placeholder="Price in USD ($)" required>
+            <button type="submit">Save to Inventory</button>
+        </form>
+        <br>
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>

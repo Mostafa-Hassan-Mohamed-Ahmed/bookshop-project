@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BookStore Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 10px 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .search-bar { text-align: center; margin: 25px 0; }
+        .search-bar input { padding: 10px; width: 350px; border: 1px solid #ddd; border-radius: 20px; outline: none; padding-left: 20px; }
+        .search-bar button { padding: 10px 20px; border-radius: 20px; border: none; background: #333; color: #fff; cursor: pointer; }
+        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .book-card { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; }
+        .book-card:hover { transform: translateY(-5px); }
+        .price-tag { color: #2ecc71; font-weight: bold; font-size: 1.2rem; }
+        .btn-add { background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+        .btn-del { color: #e74c3c; background: none; border: 1px solid #e74c3c; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2>📚 Welcome, <%= username %></h2>
+        <div>
+            <a href="/add" class="btn-add">Add Book</a>
+            <a href="/logout" style="margin-left:15px; color:#666;">Logout</a>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <form action="/" method="GET">
+            <input type="text" name="search" placeholder="Search for books..." value="<%= searchQuery %>">
+            <button type="submit">Search</button>
+            <% if(searchQuery) { %> <a href="/" style="margin-left:10px">Clear</a> <% } %>
+        </form>
+    </div>
+
+    <div class="container">
+        <% if(books.length === 0) { %> <p>No books found.</p> <% } %>
+        <% books.forEach(book => { %>
+            <div class="book-card">
+                <h3><%= book.title %></h3>
+                <p style="color: #666;"><%= book.description %></p>
+                <p class="price-tag">$<%= book.price %></p>
+                <form action="/delete/<%= book._id %>" method="POST">
+                    <button class="btn-del" onclick="return confirm('Delete this book?')">Remove</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
